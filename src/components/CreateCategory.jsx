@@ -11,7 +11,9 @@ export const CreateCategory = ({
     setCategory(e.target.value)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
     handleCreateCatSubmit(category)
     setCategory('')
   }
@@ -31,19 +33,20 @@ export const CreateCategory = ({
       </button>
 
       <h1>Create a category</h1>
-      <div className="form-group">
-        <label htmlFor="category-name">Post</label>
-        <input
-          onChange={handleChange}
-          value={category}
-          className="form-control"
-          id="category-name"
-        />
-      </div>
 
-      <button className="btn btn-secondary" onClick={handleSubmit}>
-        Submit
-      </button>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="category-name">Category</label>
+          <input
+            onChange={handleChange}
+            value={category}
+            className="form-control"
+            id="category-name"
+          />
+        </div>
+
+        <button className="btn btn-secondary">Submit</button>
+      </form>
     </Modal>
   )
 }
